@@ -1,37 +1,18 @@
-## Welcome to GitHub Pages
+# What is the PiPlant?
+PiPlant is a Python 3.5.2 script with a sole purpose - allow anyone on Twitter (yes, ANYONE) to vote whether or not they want to water the plant or not on any particular day, then relay that information to the Pi for information processing (or, "do we water today or not").
 
-You can use the [editor on GitHub](https://github.com/senil888dev/piplant/edit/gh-pages/README.md) to maintain and preview the content for your website in Markdown files.
+# How can I interact with it?
+Currently, interacting with PiPlant is, well, out of the question. Due to frustrations with both the Tweepy and Twython wrappers, I decided to re-write the code once more, this time using python-twitter. It supports the same search queries and formats that the Twitter APIs natively use, no magic required. Once the twitter side is functional, you can tweet out to a particular hashtag, using a "positive" or "negative" word to convey whether you want to water the plant or not for that day.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+The current list of positive words are: 'yes', 'yep', 'yepp', 'yeppers', 'yup', 'yupp', 'yuuup', 'ye', 'yee', 'yes please', 'hell yes', 'ofc', 'yass'
 
-### Markdown
+The current list of negative words are: 'no', 'nope', 'nop', 'not on your nelly', 'no way', 'not a chance', 'hell no', 'no please', 'nu', 'nein'
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+# When can I download the code myself?
+If you want to replicate this project, the hardest part is the twitter side of things - which is my current focus for everything. Once the twitter side of things is complete, it's a matter of running code to work on either a Raspberry Pi + Camera module for taking photos, or running code to work on any PC you own with your own watering system.
 
-```markdown
-Syntax highlighted code block
+# Why bother with a website if it's not finished yet?
+Mostly because this way it's another step gone for when I do finish the project and get it operational. This link is also in the daily tweet as a kind of "Learn more about this plant here". Part of the testing is a few week-long test runs to make sure the system is capable of recovering if there's heavy load, and can handle loads of who-knows-how-many-people tweeting it.
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/senil888dev/piplant/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+# Do you have any other projects?
+I do. Monita, a face for a Jasper client, is slowly being worked on. And by slowly, I mean I haven't started because it's a Pi-exclusive system that has parts I don't have (re: all of them). You can learn more about Monita at senil888dev.github.io/monita-assistant

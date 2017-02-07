@@ -39,7 +39,7 @@ def pollPeriod(): #this is the hard part: searching for relevant tweets, compari
 
     print('Yes from:')
     for votes in positive:
-        votesPos = api.search(q='watertaila {}'.format(votes))
+        votesPos = api.search(q='waterbecky {}'.format(votes))
         for content in votesPos:
             #print(content.author._json['screen_name'])
             username = content.author._json['screen_name']
@@ -67,8 +67,28 @@ def pollPeriod(): #this is the hard part: searching for relevant tweets, compari
     print('{} to water.'.format(yes))
     print('{} to not water.'.format(no))
 
+    if yes > no:
+        print("\nWe're watering today!")
+        api.update_states(status="We had more votes to water than to not. We're watering today!")
+    if yes < no:
+        print("\nWe're not watering today!")
+        api.update_status(status="We had more votes to not water than to. We're not watering today!")
+    if yes == no:
+        print("\nWe had equal votes today.")
+        random.seed(version=2)
+        tiebreaker = random.randrange(0, 1)
+        if tiebreaker == 1:
+            print("\nWe're watering today!")
+            api.update_states(status="We had more votes to water than to not. We're watering today!")
+        if tiebreaker == 0:
+            print("\nWe're not watering today!")
+            api.update_status(status="We had more votes to not water than to. We're not watering today!")
+
+
 schedule.every().day.at("03:00").do(pollPeriod)
 schedule.every().day.at("07:00").do(startPeriod)
+schedule.every().day.at("14:50").do(startPeriod)
+schedule.every().day.at("14.:52").do(pollPeriod)
 
 while True:
     schedule.run_pending()

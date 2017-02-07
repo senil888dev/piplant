@@ -87,8 +87,8 @@ def pollPeriod(): #this is the hard part: searching for relevant tweets, compari
 
 schedule.every().day.at("03:00").do(pollPeriod)
 schedule.every().day.at("07:00").do(startPeriod)
-schedule.every().day.at("14:50").do(startPeriod)
-schedule.every().day.at("14.:52").do(pollPeriod)
+schedule.every().day.at("15:27").do(startPeriod)
+schedule.every().day.at("15:25").do(pollPeriod)
 
 while True:
     schedule.run_pending()

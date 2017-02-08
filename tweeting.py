@@ -91,10 +91,10 @@ def pollPeriod(): #this is the hard part: searching for relevant tweets, compari
             api.update_status(status="We had more votes to not water than to. We're not watering today!")
 
 
-schedule.every().day.at("11:00").do(pollPeriod)
-schedule.every().day.at("23:00").do(startPeriod)
-#schedule.every().day.at("01:25").do(startPeriod)
-#schedule.every().day.at("01:27").do(pollPeriod)
+schedule.every().day.at("03:00").do(pollPeriod)
+schedule.every().day.at("07:00").do(startPeriod)
+schedule.every().day.at("03:45").do(startPeriod)
+schedule.every().day.at("03:47").do(pollPeriod)
 
 while True:
     schedule.run_pending()

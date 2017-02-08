@@ -79,7 +79,7 @@ def pollPeriod(): #this is the hard part: searching for relevant tweets, compari
         tiebreaker = random.randrange(0, 1)
         if tiebreaker == 1:
             print("\nWe're watering today!")
-            api.update_states(status="We had more votes to water than to not. We're watering today!")
+            api.update_status(status="We had more votes to water than to not. We're watering today!")
         if tiebreaker == 0:
             print("\nWe're not watering today!")
             api.update_status(status="We had more votes to not water than to. We're not watering today!")
@@ -87,8 +87,8 @@ def pollPeriod(): #this is the hard part: searching for relevant tweets, compari
 
 schedule.every().day.at("11:00").do(pollPeriod)
 schedule.every().day.at("23:00").do(startPeriod)
-schedule.every().day.at("01:00").do(startPeriod)
-schedule.every().day.at("01:02").do(pollPeriod)
+schedule.every().day.at("01:05").do(startPeriod)
+schedule.every().day.at("01:07").do(pollPeriod)
 
 while True:
     schedule.run_pending()

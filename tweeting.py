@@ -16,7 +16,7 @@ api=tweepy.API(auth)
 positive = 'yes', 'yep', 'yepp', 'yeppers', 'yup', 'yupp', 'yuuup', 'ye', 'yee', 'ofc', 'yass'
 negative = 'no', 'nope', 'nop', 'not on your nelly', 'no way', 'not a chance', 'hell no', 'no please', 'nu', 'nein'
 #where is the image we're uploading going to be at? this case: it's nested. heavily.
-photo ='C:/Users/Sean/Downloads/ExtraExtra/PolyBridgeGIFs/pb1.gif'
+photo ='/usr/src/app/pi.png'
 
 def startPeriod(): #this is the tweet that signifies the start of the voting period.
     timeNow = strftime('%a, %b %d %Y', localtime())
@@ -85,10 +85,10 @@ def pollPeriod(): #this is the hard part: searching for relevant tweets, compari
             api.update_status(status="We had more votes to not water than to. We're not watering today!")
 
 
-schedule.every().day.at("03:00").do(pollPeriod)
-schedule.every().day.at("07:00").do(startPeriod)
-schedule.every().day.at("15:27").do(startPeriod)
-schedule.every().day.at("15:25").do(pollPeriod)
+schedule.every().day.at("11:00").do(pollPeriod)
+schedule.every().day.at("23:00").do(startPeriod)
+schedule.every().day.at("00:37").do(startPeriod)
+schedule.every().day.at("00:40").do(pollPeriod)
 
 while True:
     schedule.run_pending()

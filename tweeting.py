@@ -17,6 +17,8 @@ positive = 'yes', 'yep', 'yepp', 'yeppers', 'yup', 'yupp', 'yuuup', 'ye', 'yee',
 negative = 'no', 'nope', 'nop', 'not on your nelly', 'no way', 'not a chance', 'hell no', 'no please', 'nu', 'nein'
 #where is the image we're uploading going to be at? this case: it's nested. heavily.
 photo ='/usr/src/app/pi.png'
+global lastDayWatered
+lastDayWatered = "N/A"
 
 def startPeriod(): #this is the tweet that signifies the start of the voting period.
     timeNow = strftime('%a, %b %d %Y', localtime())
@@ -24,7 +26,7 @@ def startPeriod(): #this is the tweet that signifies the start of the voting per
     timeStartPeriod = strftime('%Y-%m-%d', localtime())
     #Your message. We need this to update every time we tweet, hence why it's here.
     #If you don't change anything (add/remove search terms), keep the piplant.cu.cc link, it's there to help users on what they can tweet.
-    message = "It's {0} now! Last watered on DOW. Vote using #waterbecky and a word like YES or NO! Learn more @ piplant.cu.cc".format(timeNow)
+    message = "It's {} now! Last watered on {}. Vote using #waterbecky and a word like YES or NO! Learn more @ piplant.cu.cc".format(timeNow, lastDayWatered)
     api.update_with_media(filename=photo, status=message)
     print(message)
 
@@ -37,6 +39,8 @@ def pollPeriod(): #this is the hard part: searching for relevant tweets, compari
     ignoreUserY = set()
     ignoreUserN = set()
 
+    #runs the search queries to gather the votes for positive and negative votes, adds 1 to their respective variable (positive adds to yes, negative adds to no)
+    #and if the user has been caught voting already, counts only the most recent vote.
     print('Yes from:')
     for votes in positive:
         votesPos = api.search(q='waterbecky {}'.format(votes))
@@ -70,7 +74,8 @@ def pollPeriod(): #this is the hard part: searching for relevant tweets, compari
     if yes > no:
         print("\nWe're watering today!")
         api.update_status(status="We had more votes to water than to not. We're watering today!")
-    if yes < no:
+        lastDayWatered = strftime("%a")
+    if no > yes:
         print("\nWe're not watering today!")
         api.update_status(status="We had more votes to not water than to. We're not watering today!")
     if yes == no:
@@ -80,6 +85,7 @@ def pollPeriod(): #this is the hard part: searching for relevant tweets, compari
         if tiebreaker == 1:
             print("\nWe're watering today!")
             api.update_status(status="We had more votes to water than to not. We're watering today!")
+            lastDayWatered = strftime("%a")
         if tiebreaker == 0:
             print("\nWe're not watering today!")
             api.update_status(status="We had more votes to not water than to. We're not watering today!")

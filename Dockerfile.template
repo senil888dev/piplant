@@ -4,7 +4,5 @@ COPY ./requirements.txt /requirements.txt
 RUN pip install -r /requirements.txt
 COPY . ./
 ENV INITSYSTEM on
-CMD ["sudo", "dpkg-reconfigure", "tzdata"]
-CMD ["12"]
-CMD ["11"]
+ENV TZ=America/Los_Angeles
 CMD ["python", "/usr/src/app/tweeting.py"]

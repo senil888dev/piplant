@@ -1,8 +1,0 @@
-from resin/%%RESIN_MACHINE_NAME%%-python
-WORKDIR /usr/src/app
-COPY ./requirements.txt /requirements.txt
-RUN pip install -r /requirements.txt
-COPY . ./
-ENV INITSYSTEM on
-ENV TZ=America/Los_Angeles
-CMD ["python", "/usr/src/app/tweeting.py"]

@@ -41,7 +41,7 @@ def startPeriod():  # this is the tweet that signifies the start of the voting p
     # Your message. We need this to update every time we tweet, hence why it's here.
     # If you don't change anything (add/remove search terms), keep the piplant.cu.cc link, it's there to help users on what they can tweet.
     # If you do change anything (add/remove search terms), feel free to put in your own website or some short way of describing how people can respond.
-    message = "It's {} now! Last watered on {}. Vote using #waterbecky and a word like YES or NO! Learn more @ piplant.cu.cc".format(
+    message = "It's {} now! Last watered on {}. Vote using #waterbecky and a word like YES or NO! Learn more @ https://goo.gl/serm4H".format(
         timeNow, lastDayWatered)
     api.update_with_media(filename=video, status=message)
     print(message)

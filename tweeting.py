@@ -1,15 +1,17 @@
+# -*- coding: utf-8-*-# Encoding cookie added by Mu Editor
+
 import tweepy
 import schedule
 import time
 import random
-import os
-#from picamera import PiCamera
+import subproccess
+from picamera import PiCamera
 from auth import consumer_key, consumer_secret, key, secret
 from time import strftime, localtime
 
-#cam = PiCamera()
-#cam.resolution = (1024, 1024)
-#cam.framerate = 30
+cam = PiCamera()
+cam.resolution = (1024, 1024)
+cam.framerate = 30
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(key, secret)
 
@@ -34,7 +36,7 @@ def cameraCapture():  # this is the part that takes the video at a specified res
     cam.wait_recording(10)
     cam.stop_recording()
     time.sleep(30)
-    os.system('MP4Box -fps 30 -add {} {}', videoRaw, video)
+    subproccess.run('MP4Box -fps 30 -add {} {}', videoRaw, video)
 
 def startPeriod():  # this is the tweet that signifies the start of the voting period.
     timeNow = strftime('%a, %b %d %Y', localtime())
